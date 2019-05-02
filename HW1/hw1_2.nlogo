@@ -27,7 +27,8 @@ to setup
   set white-spots no-patches
   set turts-bl no-turtles
   set turts-orj no-turtles
-  set net-size 8
+  set net-size network-size ; read from input
+  if is-debug [ print net-size ]
   ; create turtles on random patches.
   ask patches [
     let cur-patch self
@@ -68,6 +69,7 @@ end
 ; run the model for one tick
 to go
   if all? turtles [ happy? ] [ stop ]
+  if ticks = 150 [ stop ] ; since this run infinitely, need a stopping point for comparisons
   move-unhappy-turtles
   update-turtles
   update-globals
@@ -296,7 +298,7 @@ density
 density
 50
 99
-95.0
+85.0
 1
 1
 %
@@ -341,6 +343,16 @@ count turtles
 1
 1
 11
+
+CHOOSER
+935
+45
+1073
+90
+network-size
+network-size
+8 16 32
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
